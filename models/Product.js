@@ -23,7 +23,7 @@ Product.init(
     },
     // price column
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(11, 2),
       allowNull: false,
       validate: {
         isDecimal: true
