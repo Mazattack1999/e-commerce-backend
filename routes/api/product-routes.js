@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
       'price',
       'stock'
     ],
+    // join with category and tag table
     include: [
       {
         model: Category,
@@ -53,6 +54,7 @@ router.get('/:id', (req, res) => {
       'price',
       'stock'
     ],
+    // join with category and tag table
     include: [
       {
         model: Category,
