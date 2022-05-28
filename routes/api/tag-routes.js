@@ -80,10 +80,48 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
+
+  Tag.update(req.body, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbTagData => {
+    // check if tag id is found
+    if (!dbTagData) {
+        res.status(404).json({ message: 'No tag found with this id' });
+        return;
+    }
+    // change Tag name
+    res.json(dbTagData);
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  })
 });
 
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
+
+  Tag.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(dbTagData => {
+    // check if tag id is found
+    if (!dbTagData) {
+        res.status(404).json({ message: 'No tag found with this id' });
+        return;
+    }
+    // respond with deleted category
+    res.json(dbTagData);
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  })
 });
 
 module.exports = router;
